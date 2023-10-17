@@ -227,6 +227,10 @@ class App {
     this.ctx.fillStyle = '#000';
     this.ctx.fillText('Agar', 225, 40);
 
+    this.ctx.font = 'bold 16px Arial';
+    this.ctx.fillStyle = '#000';
+    this.ctx.fillText('Move the sliders left and right and see what happens.', 15, 90);
+
     this.ctx.fillStyle = '#000';
     this.ctx.beginPath();
     this.ctx.arc(30+240*this.r_b, 30, 20, 0, 2 * Math.PI, false);

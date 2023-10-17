@@ -18,11 +18,11 @@ function mixColor(color1, color2, amount) {
 class App {
   constructor() {
     // Variables and WASM-connections
-    this.universe = Universe.new(1/30, 1); // input : fps(frame per sec) , behavior(crawl:1, swim:2)
+    this.universe = Universe.new(1/30, 1); // input : fps(frame per sec) , initial behavior(crawl:1, swim:2)
     this.n_point = this.universe.n_point();
     let pointer;
     pointer = this.universe.x_skin();
-    this.x_point = new Float64Array(memory.buffer, pointer, this.n_point); // n_point대신에 undefined를 써도 되긴함.
+    this.x_point = new Float64Array(memory.buffer, pointer, this.n_point);
     pointer = this.universe.y_skin();
     this.y_point = new Float64Array(memory.buffer, pointer, this.n_point);
     
@@ -140,16 +140,6 @@ class App {
       let y_add = -(this.offsetY -this.stageHeight/2)/this.r;
       this.add_worm(1, Math.random()*2*Math.PI, x_add, y_add);
     }
-
-    // let x_add = (this.offsetX -this.stageWidth/2)/this.r;
-    // let y_add = -(this.offsetY -this.stageHeight/2)/this.r;
-    // this.add_worm(1, Math.random()*2*Math.PI, x_add, y_add);
-  //   let x_mousePos = e.clientX;
-  //   let y_mousePos = e.clientY;
-  //   console.log(y_mousePos);
-  //   let x_add = (x_mousePos -this.stageWidth/2)/this.r;
-  //   let y_add = -(y_mousePos -this.stageHeight/2)/this.r;
-  //   this.add_worm(1, Math.random()*2*Math.PI, x_add, y_add);
   }
 
   onMove(e) {
@@ -172,13 +162,6 @@ class App {
     this.offsetY = eTouch.clientY;
     this.set_r_b();
     this.set_behavior();
-
-    // let x_mousePos = e.clientX;
-    // let y_mousePos = e.clientY;
-    // console.log(y_mousePos);
-    // let x_add = (x_mousePos -this.stageWidth/2)/this.r;
-    // let y_add = -(y_mousePos -this.stageHeight/2)/this.r;
-    // this.add_worm(1, Math.random()*2*Math.PI, x_add, y_add);
   }
 
   onTouchMove(e) {
@@ -216,8 +199,8 @@ class App {
 
   drawslider1() {
     let gradient = this.ctx.createLinearGradient(0, 0, 300, 0);
-    gradient.addColorStop(0.2, '#33F');   // Red at the start
-    gradient.addColorStop(0.8, '#FF8'); // Yellow at the end
+    gradient.addColorStop(0.2, '#33F');
+    gradient.addColorStop(0.8, '#FF8');
     this.ctx.fillStyle = gradient;
     this.ctx.fillRect(0, 0, 300, 60);
 
@@ -230,6 +213,8 @@ class App {
     this.ctx.font = 'bold 16px Arial';
     this.ctx.fillStyle = '#000';
     this.ctx.fillText('Move the sliders left and right and see what happens.', 15, 90);
+    this.ctx.font = '16px Arial';
+    this.ctx.fillText('(Source code: https://github.com/TaegonChung/ElegansBot)', 15, 115);
 
     this.ctx.fillStyle = '#000';
     this.ctx.beginPath();
@@ -244,8 +229,8 @@ class App {
 
   drawslider2() {
     let gradient = this.ctx.createLinearGradient(320, 0, 300+320, 0);
-    gradient.addColorStop(0.2, '#7DF');   // Red at the start
-    gradient.addColorStop(0.8, '#5FA'); // Yellow at the end
+    gradient.addColorStop(0.2, '#7DF');
+    gradient.addColorStop(0.8, '#5FA');
     this.ctx.fillStyle = gradient;
     this.ctx.fillRect(320, 0, 300, 60);
 
@@ -320,7 +305,7 @@ class App {
     this.n_point = this.universe.n_point();
     let pointer;
     pointer = this.universe.x_skin();
-    this.x_point = new Float64Array(memory.buffer, pointer, this.n_point); // n_point대신에 undefined를 써도 되긴함.
+    this.x_point = new Float64Array(memory.buffer, pointer, this.n_point);
     pointer = this.universe.y_skin();
     this.y_point = new Float64Array(memory.buffer, pointer, this.n_point);
   }
